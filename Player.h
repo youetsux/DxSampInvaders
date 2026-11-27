@@ -1,8 +1,10 @@
 #pragma once
 #include "CharaBase.h"
-#include <list>
+#include <array>
+
 
 class Beam;
+
 class Player :
     public CharaBase
 {
@@ -12,10 +14,10 @@ public:
 	void Update();
 	void Draw();
 	void Release();
-	std::list<Beam*>& GetBeams() { return beams_; }
 private:
 	void Move();
-	unsigned int color_;
-	std::list<Beam*> beams_;
+	unsigned int color_;//プレイヤーの色
+	std::array<Beam*, 3> beams_;
+	//Beam* beams_[10];といっしょ
 };
 

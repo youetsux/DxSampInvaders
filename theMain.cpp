@@ -11,9 +11,12 @@ namespace
 	Player* player = nullptr;
 }
 
+//関数のプロトタイプ宣言
+void Init();  //Initialize
 void Update();
 void Draw();
 void Release();
+void MyGame();
 
 float gDeltaTime = 0.0f; // フレーム間の時間差
 
@@ -53,36 +56,28 @@ void MyGame()
 
 void Update()
 {
-	if (player != nullptr)
-	{
+	if(player)
 		player->Update();
-	}
 }
 
 void Draw()
 {
-	if (player != nullptr)
-	{
-		player->Draw();
-	}
+	if (player)
+		player->Draw();	
 }
 
 
 void Release()
 {
-	if (player != nullptr)
-	{
-		delete player;
-		player = nullptr;
-	}
 }
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
-	DxInit();
+	DxInit();//DXライブラリ初期化処理
 	crrTime = GetNowCount();
 	prevTime = GetNowCount();
-	Init();
+
+	Init(); //初期化処理
 
 	while (true)
 	{
@@ -95,8 +90,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		gDeltaTime = deltaTime; // グローバル変数に保存
 
 		//ここにやりたい処理を書く
-
-		MyGame();
+		MyGame(); //MyGame=Update+Draw
 
 		ScreenFlip();
 		WaitTimer(16);
@@ -109,7 +103,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			break;
 	}
 
-	Release();
+	Release(); //解放処理
 	DxLib_End();
 	return 0;
 }

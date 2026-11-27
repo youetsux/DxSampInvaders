@@ -4,15 +4,15 @@ class Beam :
     public CharaBase
 {
 public:
-	Beam();
+    Beam();
 	Beam(const Vec2& pos);
 	~Beam();
 	void Update();
 	void Draw();
-	bool IsOutScreen() const;
+	void Release();
+	bool IsOutScreen();
 private:
-    int length_;
-    unsigned int color_;
-    int thickness_;
+	unsigned int color_;//ƒr[ƒ€‚ÌF
+	void Move();
 };
 
